@@ -1,0 +1,63 @@
+{
+  "batch_size": 16,
+  "cuda": 2,
+  "epochs": 200,
+  "horizon": 0,
+  "window": 48,
+  "target": 1,
+  "train": 0.6,
+  "valid": 0.2,
+  "test": 0.2,
+  "loss_function": "MSELoss",
+  "optim": "Adam",
+  "mode": "test",
+  "normalized": 3,
+  "seperate_normalized": 0,
+  "seperate_mode": 1,
+  "seperate_pickdrop": 1,
+  "loss_normalized": 1,
+  "weight_decay": 0.0001,
+  "model_name": "MyModel",
+  "input_size": 406,
+  "output_size": 2,
+  "taxi_size": 185,
+  "bike_size": 221,
+  "covariate_size": 31,
+  "embedding_size": 64,
+  "data_path": "data/taxi-all",
+  "graph_path": "data/train-data/graph/taxi-graph-mobility.npy",
+  "MyModel": {
+    "lr": 0.002,
+    "num_layers": 2,
+    "num_filters": 64,
+    "hidden": 5,
+    "d_model": 45,
+    "pretrain_model":"save_models/Embedding",
+    "description": "weight spatial dependency"
+  },
+  "MyModel-Embedding": {
+    "lr": 0.002,
+    "num_layers": 2,
+    "num_filters": 64,
+    "hidden": 5,
+    "d_model": 45,
+    "pretrain_model":"save_models/MyModel-loss",
+    "description": "temporal embedding"
+  },
+  "Embedding": {
+    "lr": 0.001,
+    "num_layers": 1,
+    "num_filters": 64,
+    "hidden": 16,
+    "d_model": 45,
+    "description":"feature embedding prediction"
+  },
+  "RawGAT": {
+    "lr": 0.001,
+    "num_layers": 1,
+    "num_filters": 64,
+    "hidden": 16,
+    "d_model": 48,
+    "description": "2/64/32/64"
+  }
+}
